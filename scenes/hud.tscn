@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://i4515j0ssywr"]
+
+[ext_resource type="Script" uid="uid://cjil0iirtv3an" path="res://scripts/hud.gd" id="1_5ysmq"]
+[ext_resource type="LabelSettings" uid="uid://vddu6dtlkl1r" path="res://assets/fonts/bold_font_settings.tres" id="1_ahhtf"]
+[ext_resource type="LabelSettings" uid="uid://dy28huedgqm0w" path="res://assets/fonts/base_font_settings.tres" id="2_oo0fn"]
+
+[node name="HUD" type="Control" unique_id=995680338]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ysmq")
+
+[node name="Gold" type="Label" parent="." unique_id=73674921]
+layout_mode = 0
+offset_right = 131.0
+offset_bottom = 8.0
+text = "Gold: "
+label_settings = ExtResource("1_ahhtf")
+vertical_alignment = 1
+
+[node name="Amt" type="Label" parent="Gold" unique_id=380279026]
+layout_mode = 0
+offset_left = 131.0
+offset_right = 138.0
+offset_bottom = 8.0
+text = "0"
+label_settings = ExtResource("2_oo0fn")
+vertical_alignment = 1
+
+[node name="Knowledge" type="Label" parent="." unique_id=1033944797]
+layout_mode = 0
+offset_top = 12.0
+offset_right = 131.0
+offset_bottom = 20.0
+text = "Knowledge: "
+label_settings = ExtResource("1_ahhtf")
+vertical_alignment = 1
+
+[node name="Amt" type="Label" parent="Knowledge" unique_id=64840480]
+layout_mode = 0
+offset_left = 131.0
+offset_right = 138.0
+offset_bottom = 8.0
+text = "0"
+label_settings = ExtResource("2_oo0fn")
+vertical_alignment = 1
+
+[node name="Arcane Esoterica" type="Label" parent="." unique_id=69851850]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 131.0
+offset_bottom = 32.0
+text = "Arcane Esoterica: "
+label_settings = ExtResource("1_ahhtf")
+vertical_alignment = 1
+
+[node name="Amt" type="Label" parent="Arcane Esoterica" unique_id=2095760444]
+layout_mode = 0
+offset_left = 131.0
+offset_right = 138.0
+offset_bottom = 8.0
+text = "0"
+label_settings = ExtResource("2_oo0fn")
+vertical_alignment = 1
+
+[node name="Food" type="Label" parent="." unique_id=197906692]
+layout_mode = 0
+offset_top = 36.0
+offset_right = 131.0
+offset_bottom = 44.0
+text = "Food: "
+label_settings = ExtResource("1_ahhtf")
+vertical_alignment = 1
+
+[node name="Amt" type="Label" parent="Food" unique_id=1145220705]
+layout_mode = 0
+offset_left = 131.0
+offset_right = 138.0
+offset_bottom = 8.0
+text = "0"
+label_settings = ExtResource("2_oo0fn")
+vertical_alignment = 1
+
+[node name="Animal Products" type="Label" parent="." unique_id=2083977749]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 131.0
+offset_bottom = 56.0
+text = "Animal Products: "
+label_settings = ExtResource("1_ahhtf")
+vertical_alignment = 1
+
+[node name="Amt" type="Label" parent="Animal Products" unique_id=152095268]
+layout_mode = 0
+offset_left = 131.0
+offset_right = 138.0
+offset_bottom = 8.0
+text = "0"
+label_settings = ExtResource("2_oo0fn")
+vertical_alignment = 1
+
+[node name="Plant Products" type="Label" parent="." unique_id=1696969463]
+z_index = 2
+layout_mode = 0
+offset_top = 60.0
+offset_right = 131.0
+offset_bottom = 68.0
+text = "Plant Products: "
+label_settings = ExtResource("1_ahhtf")
+vertical_alignment = 1
+
+[node name="Amt" type="Label" parent="Plant Products" unique_id=1469787966]
+layout_mode = 0
+offset_left = 131.0
+offset_right = 138.0
+offset_bottom = 8.0
+text = "0"
+label_settings = ExtResource("2_oo0fn")
+vertical_alignment = 1
+
+[node name="Minerals" type="Label" parent="." unique_id=1062868203]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 131.0
+offset_bottom = 80.0
+text = "Minerals: "
+label_settings = ExtResource("1_ahhtf")
+vertical_alignment = 1
+
+[node name="Amt" type="Label" parent="Minerals" unique_id=1726422679]
+layout_mode = 0
+offset_left = 131.0
+offset_right = 138.0
+offset_bottom = 8.0
+text = "0"
+label_settings = ExtResource("2_oo0fn")
+vertical_alignment = 1

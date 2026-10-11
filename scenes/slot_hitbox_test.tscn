@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cnvg0n1m4drv8"]
+
+[ext_resource type="Script" uid="uid://df6uoi3c53ddn" path="res://scripts/slot_hitbox_test.gd" id="1_g37s4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
+size = Vector2(16, 16)
+
+[node name="SlotHitboxTest" type="Node2D" unique_id=269530850]
+script = ExtResource("1_g37s4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=71529176]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1324984020]
+shape = SubResource("RectangleShape2D_1scci")
+
+[connection signal="find_nearest_tile_center" from="." to="." method="_on_find_nearest_tile_center"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

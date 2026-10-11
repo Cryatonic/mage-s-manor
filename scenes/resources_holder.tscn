@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cgqim5ui5wsks"]
+
+[ext_resource type="Script" uid="uid://cly1fcb0gyu6y" path="res://scripts/resources_holder.gd" id="1_l6e7v"]
+
+[node name="ResourcesHolder" type="Node" unique_id=72769800]
+script = ExtResource("1_l6e7v")
+
+[connection signal="get_resources" from="." to="." method="_on_get_resources"]

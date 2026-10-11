@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b5vsawdhm51fy"]
+
+[ext_resource type="Script" uid="uid://b8h2qj0t4b0eg" path="res://scripts/build_piece_test.gd" id="1_y2nd6"]
+
+[node name="BuildPieceTest" type="Node2D" unique_id=2144734406]
+script = ExtResource("1_y2nd6")
+
+[node name="SpriteTiles" type="Node2D" parent="." unique_id=541494081]
+
+[node name="HitboxTiles" type="Node2D" parent="." unique_id=433939170]

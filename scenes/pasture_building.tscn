@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cngww2dyqvc1j"]
+
+[ext_resource type="PackedScene" uid="uid://csa7ole1mnfxr" path="res://scenes/base_building.tscn" id="1_okrkj"]
+[ext_resource type="Script" uid="uid://cyn3008lc5ri0" path="res://scripts/pasture_building.gd" id="2_3dodv"]
+
+[node name="PastureBuilding" unique_id=1344425237 instance=ExtResource("1_okrkj")]
+script = ExtResource("2_3dodv")

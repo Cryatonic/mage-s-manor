@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cvfjq8m5tpurd"]
+
+[ext_resource type="Script" uid="uid://dprhctwr5g5kc" path="res://scripts/test_tileset_scene.gd" id="1_peg85"]
+[ext_resource type="Texture2D" uid="uid://bm0c2ydp3b6l0" path="res://assets/sprites/tilesheets/tileset-test.png" id="2_peg85"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
+size = Vector2(16, 16)
+
+[node name="TestTilesetScene" type="Node2D" unique_id=1840201369]
+script = ExtResource("1_peg85")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=125011068]
+self_modulate = Color(0, 0, 0, 0)
+texture = ExtResource("2_peg85")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=345765251]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=558888999]
+shape = SubResource("RectangleShape2D_1scci")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

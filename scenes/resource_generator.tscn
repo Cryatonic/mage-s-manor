@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cehasbpkbiho2"]
+
+[ext_resource type="Script" uid="uid://crnsh6ikg1muy" path="res://scripts/resource_generator.gd" id="1_ynpw4"]
+
+[node name="ResourceGenerator" type="Node2D" unique_id=1472960099]
+script = ExtResource("1_ynpw4")
+
+[connection signal="change_resources" from="." to="." method="_on_change_resources"]
+[connection signal="generating" from="." to="." method="_on_generating"]
