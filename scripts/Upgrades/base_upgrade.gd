@@ -55,10 +55,11 @@ func buy_upgrade() -> void:
 			break
 	
 	if can_buy:
-		curr_num_buy += 1
 		for cost in upgrade_costs:
-			ResourcesHolder.resources_held[cost[0]] -= cost[1]
-		print("y")
+			ResourcesHolder.resources_held[cost[0]] -= cost[1] * (pow(2, curr_num_buy))
+		curr_num_buy += 1
+		print("Bought: " + upgrade_name)
+	else: print("Cannot Afford: " + upgrade_name)
 
 func _on_area_2d_mouse_entered() -> void:
 	print(upgrade_name)

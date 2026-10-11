@@ -16,9 +16,13 @@ func _input(event: InputEvent) -> void:
 	if not active: return
 	
 	if event.is_action_pressed("select"):
-		pass
+		if owner.hover_objs.size() == 0: return
+		
+		owner.hover_objs[0].emit_signal("clicked")
 
 func toggle_active(toggle : bool) -> void:
 	active = toggle
 	
 	visible = active
+	for up in get_children():
+		up.get_node("Area2D/CollisionShape2D").disabled = !active

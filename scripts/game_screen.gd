@@ -64,7 +64,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("select") and not build_mode:
 		for obj in owner.hover_objs:
-			if obj is BuildPieceTest: obj.owner.work_click(2.0)
+			if obj is BuildPieceTest: obj.owner.work_click(ResourcesHolder.work_power)
 	
 	if event.is_action_pressed("toggle_build"):
 		toggle_build_mode(!build_mode)
