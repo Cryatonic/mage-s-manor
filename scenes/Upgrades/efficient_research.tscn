@@ -12,6 +12,7 @@ metadata/_custom_type_script = "uid://bf1lpi1i7w0ts"
 
 [node name="EfficientResearch" unique_id=670764094 instance=ExtResource("1_cpxc2")]
 script = ExtResource("2_0ys48")
+effect_desc = "Increase Knowledge gain by +1."
 upgrades = Array[ExtResource("3_qcdu7")]([SubResource("Resource_0ys48")])
 max_num_buy = 5
 upgrade_name = "Efficient Research"

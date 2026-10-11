@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8opkcfhl0pg3" path="res://scripts/Upgrades/base_upgrade.gd" id="1_o0nn6"]
 [ext_resource type="Texture2D" uid="uid://bjwcc32w8nmiq" path="res://icon.svg" id="2_c1284"]
+[ext_resource type="LabelSettings" uid="uid://dy28huedgqm0w" path="res://assets/fonts/base_font_settings.tres" id="3_c1284"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
 size = Vector2(16, 16)
@@ -21,5 +22,17 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=783666390]
 shape = SubResource("RectangleShape2D_1scci")
 
+[node name="Description" type="Label" parent="." unique_id=1587808437]
+visible = false
+custom_minimum_size = Vector2(150, 8)
+custom_maximum_size = Vector2(150, -1)
+offset_left = 16.0
+offset_top = -4.0
+offset_right = 22.0
+offset_bottom = 4.0
+label_settings = ExtResource("3_c1284")
+autowrap_mode = 2
+
 [connection signal="clicked" from="." to="." method="_on_clicked"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

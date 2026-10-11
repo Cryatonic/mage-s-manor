@@ -13,6 +13,7 @@ metadata/_custom_type_script = "uid://dak13rfa2djpv"
 
 [node name="ProsperousMines" unique_id=670764094 instance=ExtResource("1_1bfhf")]
 script = ExtResource("2_ayrey")
+effect_desc = "Increase the yield of all mines' Minerals and Gold by +1."
 upgrades = Array[ExtResource("3_rj15k")]([SubResource("Resource_dthvl")])
 max_num_buy = 10
 upgrade_name = "Prosperous Mines"

@@ -4,6 +4,9 @@ class_name BaseUpgrade
 @warning_ignore("unused_signal")
 signal clicked
 
+@onready var description: Label = $Description
+@export var effect_desc : String
+
 @export var upgrades : Array[BaseUpgradeStrategy]
 
 @export var max_num_buy : int = 0
@@ -17,6 +20,8 @@ var curr_num_buy : int = 0
 func _ready() -> void:
 	set_upgrade_costs()
 	determine_upgrade_costs(upgrade_costs.duplicate())
+	
+	update_label()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,10 +68,29 @@ func buy_upgrade() -> void:
 		print("Bought: " + upgrade_name)
 	else: print("Cannot Afford: " + upgrade_name)
 
+func update_label() -> void:
+	description.text = upgrade_name
+	description.text += "\n\n"
+	description.text += effect_desc
+	description.text += "\n\n"
+	description.text += "Cost: "
+	for up in upgrade_costs:
+		description.text += "\n"
+		description.text += up[0] + ": " + str(int(up[1] * (pow(2, curr_num_buy))))
+	description.text += "\n\nPurchased: " + str(curr_num_buy) + "/" + str(max_num_buy)
+	
+	description.position.y = -description.size.y / 2
+
 func _on_area_2d_mouse_entered() -> void:
-	print(upgrade_name)
+	update_label()
+	description.visible = true
 
 
 func _on_clicked() -> void:
 	print(upgrade_name + " was clicked.")
 	buy_upgrade()
+	update_label()
+
+
+func _on_area_2d_mouse_exited() -> void:
+	description.visible = false
