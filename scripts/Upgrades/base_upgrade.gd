@@ -74,7 +74,8 @@ func update_label() -> void:
 	description.text += effect_desc
 	description.text += "\n\n"
 	description.text += "Cost: "
-	for up in upgrade_costs:
+	if curr_num_buy >= max_num_buy: description.text += "--"
+	else: for up in upgrade_costs:
 		description.text += "\n"
 		description.text += up[0] + ": " + str(int(up[1] * (pow(2, curr_num_buy))))
 	description.text += "\n\nPurchased: " + str(curr_num_buy) + "/" + str(max_num_buy)
