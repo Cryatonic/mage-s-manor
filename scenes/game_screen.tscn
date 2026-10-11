@@ -281,7 +281,7 @@ scenes/1/scene = ExtResource("2_dthvl")
 [sub_resource type="TileSet" id="TileSet_8tvxp"]
 sources/0 = SubResource("TileSetScenesCollectionSource_vqtp5")
 
-[node name="GameScreen" type="Node2D" unique_id=888900221]
+[node name="GameScreen" type="Node2D" unique_id=888900221 groups=["GameScreen"]]
 script = ExtResource("1_dthvl")
 
 [node name="Tilemaps" type="Node2D" parent="." unique_id=1692935764]

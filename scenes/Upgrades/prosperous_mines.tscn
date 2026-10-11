@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bbknffokxvfbm"]
+
+[ext_resource type="PackedScene" uid="uid://tjsk5jpku4em" path="res://scenes/Upgrades/base_upgrade.tscn" id="1_1bfhf"]
+[ext_resource type="Script" uid="uid://di4h0hawdt31o" path="res://scripts/Upgrades/prosperous_mines.gd" id="2_ayrey"]
+[ext_resource type="Script" uid="uid://d36ox471iyrdg" path="res://scripts/Upgrades/base_upgrade_strategy.gd" id="3_rj15k"]
+[ext_resource type="Script" uid="uid://dak13rfa2djpv" path="res://scripts/Upgrades/prosperous_mines_strategy.gd" id="4_u8uds"]
+
+[sub_resource type="Resource" id="Resource_dthvl"]
+script = ExtResource("4_u8uds")
+type = 2
+buildings = Array[int]([3])
+metadata/_custom_type_script = "uid://dak13rfa2djpv"
+
+[node name="ProsperousMines" unique_id=670764094 instance=ExtResource("1_1bfhf")]
+script = ExtResource("2_ayrey")
+upgrades = Array[ExtResource("3_rj15k")]([SubResource("Resource_dthvl")])
+max_num_buy = 10
+upgrade_name = "Prosperous Mines"

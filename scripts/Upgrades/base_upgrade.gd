@@ -58,6 +58,8 @@ func buy_upgrade() -> void:
 		for cost in upgrade_costs:
 			ResourcesHolder.resources_held[cost[0]] -= cost[1] * (pow(2, curr_num_buy))
 		curr_num_buy += 1
+		for each : BaseUpgradeStrategy in upgrades:
+			each.obtain_upgrade()
 		print("Bought: " + upgrade_name)
 	else: print("Cannot Afford: " + upgrade_name)
 
