@@ -1,20 +1,25 @@
 [gd_scene format=3 uid="uid://tjsk5jpku4em"]
 
-[ext_resource type="Script" uid="uid://8opkcfhl0pg3" path="res://scripts/base_upgrade.gd" id="1_kcdhp"]
-[ext_resource type="Texture2D" uid="uid://bjwcc32w8nmiq" path="res://icon.svg" id="2_solpc"]
+[ext_resource type="Script" uid="uid://8opkcfhl0pg3" path="res://scripts/Upgrades/base_upgrade.gd" id="1_o0nn6"]
+[ext_resource type="Texture2D" uid="uid://bjwcc32w8nmiq" path="res://icon.svg" id="2_c1284"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
 size = Vector2(16, 16)
 
 [node name="BaseUpgrade" type="Node2D" unique_id=670764094]
-script = ExtResource("1_kcdhp")
+script = ExtResource("1_o0nn6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=42463178]
-texture = ExtResource("2_solpc")
+texture = ExtResource("2_c1284")
 region_enabled = true
 region_rect = Rect2(64, 64, 16, 16)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1635833700]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=783666390]
 shape = SubResource("RectangleShape2D_1scci")
+
+[connection signal="clicked" from="." to="." method="_on_clicked"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

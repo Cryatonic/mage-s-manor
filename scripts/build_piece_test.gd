@@ -106,3 +106,7 @@ func slot() -> void:
 	
 	global_position = total_glob_pos - total_pos
 	owner.built = true
+
+func toggle_active(toggle : bool) -> void:
+	for hb in hitbox_tiles.get_children():
+		hb.get_node("Area2D/CollisionShape2D").disabled = !toggle

@@ -12,6 +12,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
+func _input(event: InputEvent) -> void:
+	if not active: return
+	
+	if event.is_action_pressed("select"):
+		pass
+
 func toggle_active(toggle : bool) -> void:
 	active = toggle
 	

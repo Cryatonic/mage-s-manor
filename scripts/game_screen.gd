@@ -5,8 +5,8 @@ class_name GameScreen
 
 var active : bool = true
 
-var clicked_obj : Node2D = null
-var hover_objs : Array = []
+#var clicked_obj : Node2D = null
+#var hover_objs : Array = []
 
 var build_mode : bool = true
 
@@ -33,37 +33,37 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not active: return
 	
-	hover_objs = get_objects_mouse_hover()
-	if clicked_obj != null:
-		clicked_obj.global_position = get_global_mouse_position()
-		if clicked_obj is BuildPieceTest:
-			clicked_obj.hovering()
+	#hover_objs = get_objects_mouse_hover()
+	if owner.clicked_obj != null:
+		owner.clicked_obj.global_position = get_global_mouse_position()
+		if owner.clicked_obj is BuildPieceTest:
+			owner.clicked_obj.hovering()
 
 func _input(event: InputEvent) -> void:
 	if not active: return
 	
 	if event.is_action_pressed("select") and build_mode:
-		for obj in hover_objs:
+		for obj in owner.hover_objs:
 			#print(obj)
-			if obj == clicked_obj:
-				clicked_obj = null
+			if obj == owner.clicked_obj:
+				owner.clicked_obj = null
 				break
 			if obj is BuildPieceTest:
-				clicked_obj = obj
+				owner.clicked_obj = obj
 				break
-	if event.is_action_released("select") and clicked_obj != null:
-		if clicked_obj is BuildPieceTest: clicked_obj.slot()
-		clicked_obj = null
+	if event.is_action_released("select") and owner.clicked_obj != null:
+		if owner.clicked_obj is BuildPieceTest: owner.clicked_obj.slot()
+		owner.clicked_obj = null
 	
 	if event.is_action_pressed("rotate_building") and build_mode:
-		if clicked_obj == null: pass
-		if clicked_obj is not BuildPieceTest: pass
-		clicked_obj.owner.rotation += PI/2
-		while clicked_obj.owner.rotation >= 2 * PI:
-			clicked_obj.owner.rotation -= 2 * PI
+		if owner.clicked_obj == null: pass
+		if owner.clicked_obj is not BuildPieceTest: pass
+		owner.clicked_obj.owner.rotation += PI/2
+		while owner.clicked_obj.owner.rotation >= 2 * PI:
+			owner.clicked_obj.owner.rotation -= 2 * PI
 	
 	if event.is_action_pressed("select") and not build_mode:
-		for obj in hover_objs:
+		for obj in owner.hover_objs:
 			if obj is BuildPieceTest: obj.owner.work_click(2.0)
 	
 	if event.is_action_pressed("toggle_build"):
@@ -106,5 +106,7 @@ func toggle_active(toggle : bool) -> void:
 	
 	visible = active
 	
+	for hb in hitbox_layer.get_children():
+		hb.get_node("Area2D/CollisionShape2D").disabled = !active
 	for build : BaseBuilding in get_node("Buildings").get_children():
 			build.toggle_active(active)

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://chx1ipunxn17g"]
+
+[ext_resource type="PackedScene" uid="uid://tjsk5jpku4em" path="res://scenes/Upgrades/base_upgrade.tscn" id="1_cpxc2"]
+[ext_resource type="Script" uid="uid://jx4l53c37814" path="res://scripts/Upgrades/efficient_research.gd" id="2_0ys48"]
+
+[node name="EfficientResearch" unique_id=670764094 instance=ExtResource("1_cpxc2")]
+script = ExtResource("2_0ys48")
+max_num_buy = 5
+upgrade_name = "Efficient Research"
+
+[node name="Sprite2D" parent="." index="0" unique_id=42463178]
+region_rect = Rect2(32, 32, 16, 16)

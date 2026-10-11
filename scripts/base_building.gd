@@ -33,6 +33,7 @@ func work_click(power : float = 0.0) -> void:
 func toggle_active(toggle : bool) -> void:
 	active = toggle
 	
+	build_piece_test.toggle_active(active)
 	if built: resource_generator.emit_signal("generating", active)
 
 func set_resource_and_shape() -> void:

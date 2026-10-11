@@ -15,9 +15,9 @@ signal change_resources(res_array : Array[Array])
 #Plant Products: Research & Upgrades; also generates Food
 #Minerals: Research & Upgrades; also generates Gold
 
-#Resource name, Resource per Trigger, Timer to Trigger, Time since last Trigger
+#Resource name, Resource Base, Resource Multiplier, Timer to Trigger, Time since last Trigger
 @onready var resources : Array[Array] = [
-	["Knowledge", 1.0, 1.0, 0.0]
+	["Knowledge", 1.0, 1.0, 1.0, 0.0]
 ]
 var is_generating : bool = false
 
@@ -31,14 +31,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not is_generating: return
 	for x in range(0, resources.size()):
-		resources[x][3] += _delta
-		while resources[x][3] >= resources[x][2]:
-			ResourcesHolder.emit_signal("get_resources", resources[x][0], resources[x][1])
-			resources[x][3] -= resources[x][2]
+		resources[x][4] += _delta
+		while resources[x][4] >= resources[x][3]:
+			ResourcesHolder.emit_signal("get_resources", resources[x][0], resources[x][1] * resources[x][2])
+			resources[x][4] -= resources[x][3]
 
 func do_work(work_power : float = 0.0):
 	for res in resources:
-		res[3] += (1 + work_power) / 60.0
+		res[4] += (1 + work_power) / 60.0
 
 func _on_generating(toggle: bool) -> void:
 	is_generating = toggle
@@ -48,13 +48,20 @@ func _on_change_resources(res_array: Array[Array]) -> void:
 	#print(res_array)
 	var valid_indexes : Array[int] = []
 	for x in range(0, res_array.size()):
+		#Check that the Array object is another Array
 		if res_array[x] is not Array: continue
-		if res_array[x].size() != 4: continue
+		#Check that Array has 5 variables
+		if res_array[x].size() != 5: continue
+		#Check that first variable is a String that is a Resource key
 		if res_array[x][0] is not String: continue
 		if not ResourcesHolder.resources_held.has(res_array[x][0]): continue
+		#Check that the second and third variables are floats
 		if res_array[x][1] is not float: continue
-		if res_array[x][2] is not float or res_array[x][2] <= 0: continue
-		if res_array[x][3] is not float: continue
+		if res_array[x][2] is not float: continue
+		#Check that fourth variable is a float more than 0
+		if res_array[x][3] is not float or res_array[x][2] <= 0: continue
+		#Check that fifth variable is a float
+		if res_array[x][4] is not float: continue
 		valid_indexes.append(x)
 	
 	resources.clear()
