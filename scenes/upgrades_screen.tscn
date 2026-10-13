@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cqplju3ptyay1" path="res://scripts/upgrade_screen.gd" id="1_mh8j6"]
 [ext_resource type="PackedScene" uid="uid://chx1ipunxn17g" path="res://scenes/Upgrades/efficient_research.tscn" id="2_iswj5"]
 [ext_resource type="PackedScene" uid="uid://bbknffokxvfbm" path="res://scenes/Upgrades/prosperous_mines.tscn" id="3_acpmw"]
+[ext_resource type="PackedScene" uid="uid://cee8li6cbasf1" path="res://scenes/Upgrades/gold_in_them_hills.tscn" id="4_sggxf"]
 
 [node name="UpgradesScreen" type="Node2D" unique_id=243193083]
 script = ExtResource("1_mh8j6")
@@ -12,3 +13,6 @@ position = Vector2(400, 280)
 
 [node name="ProsperousMines" parent="." unique_id=1518572513 instance=ExtResource("3_acpmw")]
 position = Vector2(368, 248)
+
+[node name="GoldInThemHills" parent="." unique_id=665757376 instance=ExtResource("4_sggxf")]
+position = Vector2(336, 248)

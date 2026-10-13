@@ -1,7 +1,10 @@
 extends Node2D
 class_name GameScreen
 
+signal get_building_upgrade(upgrade : BaseUpgradeStrategy)
+
 @onready var hitbox_layer: TileMapLayer = $Tilemaps/HitboxLayer
+@onready var buildings: Node2D = $Buildings
 
 var active : bool = true
 
@@ -98,7 +101,7 @@ func toggle_build_mode(toggle: bool):
 	build_mode = toggle
 	print("Build Mode: " + str(build_mode))
 	
-	for building in get_node("Buildings").get_children():
+	for building in buildings.get_children():
 		if building.built: building.toggle_generator(!build_mode)
 
 func toggle_active(toggle : bool) -> void:
@@ -110,3 +113,17 @@ func toggle_active(toggle : bool) -> void:
 		hb.get_node("Area2D/CollisionShape2D").disabled = !active
 	for build : BaseBuilding in get_node("Buildings").get_children():
 			build.toggle_active(active)
+
+
+func _on_get_building_upgrade(upgrade: BaseUpgradeStrategy) -> void:
+	for each in buildings.get_children():
+		if upgrade.buildings == []: return
+		
+		if each is ManorBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Manor):
+			upgrade.add_upgrade(each)
+		if each is MineBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Mine):
+			upgrade.add_upgrade(each)
+		if each is FarmBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Farm):
+			upgrade.add_upgrade(each)
+		if each is PastureBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Pasture):
+			upgrade.add_upgrade(each)

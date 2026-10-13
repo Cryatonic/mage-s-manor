@@ -6,3 +6,4 @@
 script = ExtResource("1_l6e7v")
 
 [connection signal="get_resources" from="." to="." method="_on_get_resources"]
+[connection signal="get_upgrade" from="." to="." method="_on_get_upgrade"]

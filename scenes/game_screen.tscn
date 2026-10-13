@@ -320,6 +320,11 @@ position = Vector2(640, 128)
 [node name="BuildPieceTest" parent="Buildings/PastureBuilding" index="1" unique_id=2144734406]
 home_pos = Vector2(640, 64)
 
+[node name="MineBuilding2" parent="Buildings" unique_id=1155445906 instance=ExtResource("4_vnpv3")]
+position = Vector2(409, 78)
+
+[connection signal="get_building_upgrade" from="." to="." method="_on_get_building_upgrade"]
+
 [editable path="Buildings/Manor"]
 [editable path="Buildings/MineBuilding"]
 [editable path="Buildings/FarmBuilding"]

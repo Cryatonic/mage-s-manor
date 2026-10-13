@@ -3,17 +3,19 @@
 [ext_resource type="PackedScene" uid="uid://tjsk5jpku4em" path="res://scenes/Upgrades/base_upgrade.tscn" id="1_cpxc2"]
 [ext_resource type="Script" uid="uid://jx4l53c37814" path="res://scripts/Upgrades/efficient_research.gd" id="2_0ys48"]
 [ext_resource type="Script" uid="uid://d36ox471iyrdg" path="res://scripts/Upgrades/base_upgrade_strategy.gd" id="3_qcdu7"]
-[ext_resource type="Script" uid="uid://bf1lpi1i7w0ts" path="res://scripts/Upgrades/efficient_research_strategy.gd" id="4_uqfch"]
+[ext_resource type="Script" uid="uid://bvcw5ql7ahn8f" path="res://scripts/Upgrades/flat_player_bonus_strategy.gd" id="4_qcdu7"]
 
-[sub_resource type="Resource" id="Resource_0ys48"]
-script = ExtResource("4_uqfch")
+[sub_resource type="Resource" id="Resource_qcdu7"]
+script = ExtResource("4_qcdu7")
+res_type = "Knowledge"
+bonus = 1.0
 type = 1
-metadata/_custom_type_script = "uid://bf1lpi1i7w0ts"
+metadata/_custom_type_script = "uid://bvcw5ql7ahn8f"
 
 [node name="EfficientResearch" unique_id=670764094 instance=ExtResource("1_cpxc2")]
 script = ExtResource("2_0ys48")
 effect_desc = "Increase Knowledge gain by +1."
-upgrades = Array[ExtResource("3_qcdu7")]([SubResource("Resource_0ys48")])
+upgrades = Array[ExtResource("3_qcdu7")]([SubResource("Resource_qcdu7")])
 max_num_buy = 5
 upgrade_name = "Efficient Research"
 
