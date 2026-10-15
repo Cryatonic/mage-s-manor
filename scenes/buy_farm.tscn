@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bjh3q0y3x2e70"]
+
+[ext_resource type="PackedScene" uid="uid://ch4leexs7ljcq" path="res://scenes/market_item.tscn" id="1_awrfu"]
+[ext_resource type="Script" uid="uid://cc4w3prdxr42s" path="res://scripts/buy_farm.gd" id="2_0dcg7"]
+
+[node name="BuyFarm" unique_id=1067912606 instance=ExtResource("1_awrfu")]
+script = ExtResource("2_0dcg7")
+action_name = "Buy Farm"
+action_desc = "Farm: Generates Food and Plant Products."
+cost_res = Array[String](["Gold", "Plant Products"])
+cost_amt = Array[int]([25, 10])

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ch4leexs7ljcq"]
+
+[ext_resource type="FontFile" uid="uid://bwnr1vcqe2own" path="res://assets/fonts/PixelOperator8.ttf" id="1_78y5j"]
+[ext_resource type="Script" uid="uid://ij0qjwfa8sfo" path="res://scripts/market_item.gd" id="1_qoe8i"]
+
+[node name="MarketItem" type="Node2D" unique_id=1067912606]
+script = ExtResource("1_qoe8i")
+
+[node name="ActionButton" type="Button" parent="." unique_id=482332715]
+custom_maximum_size = Vector2(256, 24)
+offset_right = 256.0
+offset_bottom = 24.0
+tooltip_text = "Tooltip"
+theme_override_fonts/font = ExtResource("1_78y5j")
+text = "Test"
+
+[node name="IncButton" type="Button" parent="ActionButton" unique_id=1672171193]
+layout_mode = 0
+offset_left = 272.0
+offset_top = -1.0
+offset_right = 285.0
+offset_bottom = 15.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("1_78y5j")
+theme_override_font_sizes/font_size = 8
+text = "<"
+
+[node name="DecButton" type="Button" parent="ActionButton" unique_id=1590604318]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 12.0
+offset_right = 285.0
+offset_bottom = 28.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("1_78y5j")
+theme_override_font_sizes/font_size = 8
+text = ">"
+
+[node name="AmtLabel" type="Label" parent="ActionButton" unique_id=91641796]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 8.0
+offset_right = 287.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("1_78y5j")
+theme_override_font_sizes/font_size = 8
+text = "0"
+vertical_alignment = 1
+
+[connection signal="pressed" from="ActionButton" to="." method="_on_action_button_pressed"]
+[connection signal="pressed" from="ActionButton/IncButton" to="." method="_on_inc_button_pressed"]
+[connection signal="pressed" from="ActionButton/DecButton" to="." method="_on_dec_button_pressed"]
