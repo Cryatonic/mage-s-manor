@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://wcgxmdkshlul"]
 
+[ext_resource type="Script" uid="uid://x5ou1fn4x830" path="res://scripts/market_screen.gd" id="1_pcpas"]
 [ext_resource type="PackedScene" uid="uid://ch4leexs7ljcq" path="res://scenes/market_item.tscn" id="1_q8jq6"]
 [ext_resource type="Script" uid="uid://cqtjvfrwvxko" path="res://scripts/sell_knowledge.gd" id="2_pcpas"]
 [ext_resource type="Script" uid="uid://cc4w3prdxr42s" path="res://scripts/buy_farm.gd" id="2_rxrhn"]
 
 [node name="MarketScreen" type="Node2D" unique_id=1552489997]
-scale = Vector2(4, 4)
+script = ExtResource("1_pcpas")
 
 [node name="SellKnowledge" parent="." unique_id=1067912606 instance=ExtResource("1_q8jq6")]
-position = Vector2(0, 8)
+position = Vector2(256, 128)
 script = ExtResource("2_pcpas")
 action_name = "Sell Knowledge"
 action_desc = "Sell your magic services for Gold."
@@ -17,7 +18,7 @@ cost_res = Array[String](["Knowledge"])
 cost_amt = Array[int]([1])
 
 [node name="BuyFarm" parent="." unique_id=360049705 instance=ExtResource("1_q8jq6")]
-position = Vector2(0, 48)
+position = Vector2(256, 176)
 script = ExtResource("2_rxrhn")
 action_name = "Buy Farm"
 action_desc = "Farm: Generates Food and Plant Products."
