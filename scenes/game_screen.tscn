@@ -4,9 +4,6 @@
 [ext_resource type="Script" uid="uid://dicwool65dodk" path="res://scripts/game_screen.gd" id="1_dthvl"]
 [ext_resource type="PackedScene" uid="uid://cvfjq8m5tpurd" path="res://scenes/test_tileset_scene.tscn" id="2_dthvl"]
 [ext_resource type="PackedScene" uid="uid://c4jq81yeslrjg" path="res://scenes/manor.tscn" id="3_r01d7"]
-[ext_resource type="PackedScene" uid="uid://t7vblyjuljk" path="res://scenes/mine_building.tscn" id="4_vnpv3"]
-[ext_resource type="PackedScene" uid="uid://bdjh06ean84vm" path="res://scenes/farm_building.tscn" id="5_4m8lb"]
-[ext_resource type="PackedScene" uid="uid://cngww2dyqvc1j" path="res://scenes/pasture_building.tscn" id="6_mjl5p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2yu03"]
 texture = ExtResource("1_1urxi")
@@ -295,37 +292,14 @@ tile_map_data = PackedByteArray("AAAAAA0AAAAAAAAAAQAAAA4AAAAAAAAAAQAAAA8AAAAAAAA
 tile_set = SubResource("TileSet_8tvxp")
 
 [node name="Buildings" type="Node2D" parent="." unique_id=1782453222]
+position = Vector2(400, 96)
 
 [node name="Manor" parent="Buildings" unique_id=1290355261 instance=ExtResource("3_r01d7")]
-position = Vector2(160, 128)
 
 [node name="BuildPieceTest" parent="Buildings/Manor" index="1" unique_id=2144734406]
 home_pos = Vector2(160, 64)
 
-[node name="MineBuilding" parent="Buildings" unique_id=1344425237 instance=ExtResource("4_vnpv3")]
-position = Vector2(328, 128)
-
-[node name="BuildPieceTest" parent="Buildings/MineBuilding" index="1" unique_id=2144734406]
-home_pos = Vector2(328, 64)
-
-[node name="FarmBuilding" parent="Buildings" unique_id=1870270523 instance=ExtResource("5_4m8lb")]
-position = Vector2(496, 128)
-
-[node name="BuildPieceTest" parent="Buildings/FarmBuilding" index="1" unique_id=2144734406]
-home_pos = Vector2(496, 64)
-
-[node name="PastureBuilding" parent="Buildings" unique_id=979697762 instance=ExtResource("6_mjl5p")]
-position = Vector2(640, 128)
-
-[node name="BuildPieceTest" parent="Buildings/PastureBuilding" index="1" unique_id=2144734406]
-home_pos = Vector2(640, 64)
-
-[node name="MineBuilding2" parent="Buildings" unique_id=1155445906 instance=ExtResource("4_vnpv3")]
-position = Vector2(409, 78)
-
+[connection signal="create_building" from="." to="." method="_on_create_building"]
 [connection signal="get_building_upgrade" from="." to="." method="_on_get_building_upgrade"]
 
 [editable path="Buildings/Manor"]
-[editable path="Buildings/MineBuilding"]
-[editable path="Buildings/FarmBuilding"]
-[editable path="Buildings/PastureBuilding"]

@@ -21,6 +21,9 @@ var curr_amt : int = 1
 func _ready() -> void:
 	action_button.text = action_name
 	action_button.tooltip_text = action_desc
+	action_button.tooltip_text += "\n\nCost"
+	for c in range(0, cost_res.size()):
+		action_button.tooltip_text += "\n" + cost_res[c] + ": " + str(cost_amt[c])
 	
 	if not multi_buy:
 		inc_button.visible = false

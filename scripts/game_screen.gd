@@ -1,6 +1,9 @@
 extends Node2D
 class_name GameScreen
 
+@warning_ignore("unused_signal")
+signal create_building(type : String)
+@warning_ignore("unused_signal")
 signal get_building_upgrade(upgrade : BaseUpgradeStrategy)
 
 @onready var hitbox_layer: TileMapLayer = $Tilemaps/HitboxLayer
@@ -14,7 +17,7 @@ var active : bool = true
 var build_mode : bool = true
 
 const origin_tile_pos : Vector2 = Vector2(408, 216)
-var playable_area : Vector2 = Vector2(12,10)
+var playable_area : Vector2 = Vector2(10,10)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -127,3 +130,16 @@ func _on_get_building_upgrade(upgrade: BaseUpgradeStrategy) -> void:
 			upgrade.add_upgrade(each)
 		if each is PastureBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Pasture):
 			upgrade.add_upgrade(each)
+
+
+func _on_create_building(type: String) -> void:
+	var b : PackedScene
+	if type == "Mine":
+		b = load("uid://t7vblyjuljk")
+	elif type == "Farm":
+		b = load("uid://bdjh06ean84vm")
+	elif type == "Pasture":
+		b = load("uid://cngww2dyqvc1j")
+		
+	var build : BaseBuilding = b.instantiate()
+	buildings.add_child(build)
