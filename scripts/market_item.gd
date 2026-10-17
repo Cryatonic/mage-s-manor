@@ -43,12 +43,12 @@ func do_action() -> void:
 	
 func deduct_costs() -> void:
 	for c in range(0, cost_res.size()):
-		ResourcesHolder.resources_held[cost_res[c]] -= cost_amt[c]
+		ResourcesHolder.resources_held[cost_res[c]] -= cost_amt[c] * curr_amt
 
 
 func _on_action_button_pressed() -> void:
 	for c in range(0, cost_res.size()):
-		if ResourcesHolder.resources_held[cost_res[c]] < cost_amt[c]:
+		if ResourcesHolder.resources_held[cost_res[c]] < cost_amt[c] * curr_amt:
 			print("Cannot buy.")
 			return
 	
