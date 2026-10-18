@@ -159,3 +159,14 @@ func _on_create_building(type: String, c_res : Array[String], c_amt : Array[int]
 	build.active = false
 	build.build_cost_res = c_res
 	build.build_cost_amt = c_amt
+	
+	var spacing : float = 128.0
+	@warning_ignore("integer_division")
+	var start_pos_x : float = (floor(unbuilt_buildings.size() / 2) * -spacing) + (spacing / 2 * ((unbuilt_buildings.size() + 1) % 2))
+	if start_pos_x < -256.0:
+		start_pos_x = -256.0
+		spacing = 512.0 / (unbuilt_buildings.size() - 1)
+	for bu : BaseBuilding in unbuilt_buildings:
+		bu.position.x = start_pos_x
+		bu.build_piece_test.home_pos = position
+		start_pos_x += spacing
