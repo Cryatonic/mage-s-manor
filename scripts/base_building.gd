@@ -38,7 +38,7 @@ func toggle_active(toggle : bool, build_mode : bool) -> void:
 	
 	if not active: build_piece_test.toggle_active(build_mode)
 	else: build_piece_test.toggle_active(active)
-	if active and not build_mode: toggle_generator(true)
+	if active and built and not build_mode: toggle_generator(true)
 	else: toggle_generator(false)
 
 func set_resource_and_shape() -> void:
