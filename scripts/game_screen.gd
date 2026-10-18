@@ -112,8 +112,9 @@ func toggle_build_mode(toggle: bool):
 	print("Build Mode: " + str(build_mode))
 	
 	if not build_mode:
-		for b : BaseBuilding in unbuilt_buildings:
-			b.remove_building()
+		var s : int = unbuilt_buildings.size()
+		for b in range(1, unbuilt_buildings.size() + 1):
+			unbuilt_buildings[s - b].remove_building()
 	for building : BaseBuilding in buildings.get_children():
 		building.toggle_active(true, build_mode)
 

@@ -54,7 +54,7 @@ func remove_building() -> void:
 func toggle_built(toggle : bool) -> void:
 	built = toggle
 	
-	toggle_generator(built)
+	if built: toggle_generator(!get_tree().get_first_node_in_group("GameScreen").build_mode)
 	if built: get_tree().get_first_node_in_group("GameScreen").unbuilt_buildings.erase(self)
 	elif not built and not get_tree().get_first_node_in_group("GameScreen").unbuilt_buildings.has(self): get_tree().get_first_node_in_group("GameScreen").unbuilt_buildings.append(self)
 	
