@@ -4,6 +4,9 @@ class_name BaseBuilding
 @onready var resource_generator: ResourceGenerator = $ResourceGenerator
 @onready var build_piece_test: BuildPieceTest = $BuildPieceTest
 
+@export var build_cost_res : Array[String] = []
+@export var build_cost_amt : Array[int] = []
+
 var resources : Array[Array] = []
 var shape : Array[Array] = []
 var built : bool = false
@@ -27,14 +30,32 @@ func toggle_generator(toggle : bool) -> void:
 
 func work_click(power : float = 0.0) -> void:
 	#power = % bonus (0.2 = 20% increase = 1.2 in total)
-	if active: resource_generator.do_work(power)
+	if active and built: resource_generator.do_work(power)
 	#print("Work work!")
 
-func toggle_active(toggle : bool) -> void:
+func toggle_active(toggle : bool, build_mode : bool) -> void:
 	active = toggle
 	
-	build_piece_test.toggle_active(active)
-	if built: resource_generator.emit_signal("generating", active)
+	if not active: build_piece_test.toggle_active(build_mode)
+	else: build_piece_test.toggle_active(active)
+	if active and not build_mode: toggle_generator(true)
+	else: toggle_generator(false)
 
 func set_resource_and_shape() -> void:
 	pass
+
+func remove_building() -> void:
+	for c in range(0, build_cost_res.size()):
+		ResourcesHolder.resources_held[build_cost_res[c]] += build_cost_amt[c]
+	
+	get_tree().get_first_node_in_group("GameScreen").unbuilt_buildings.erase(self)
+	queue_free()
+
+func toggle_built(toggle : bool) -> void:
+	built = toggle
+	
+	toggle_generator(built)
+	if built: get_tree().get_first_node_in_group("GameScreen").unbuilt_buildings.erase(self)
+	elif not built and not get_tree().get_first_node_in_group("GameScreen").unbuilt_buildings.has(self): get_tree().get_first_node_in_group("GameScreen").unbuilt_buildings.append(self)
+	
+	

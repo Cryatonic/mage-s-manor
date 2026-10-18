@@ -10,3 +10,5 @@ script = ExtResource("1_jf5pk")
 [node name="ResourceGenerator" parent="." unique_id=1472960099 instance=ExtResource("2_3mj6q")]
 
 [node name="BuildPieceTest" parent="." unique_id=2144734406 instance=ExtResource("3_iylw3")]
+
+[connection signal="build_building" from="." to="." method="_on_build_building"]

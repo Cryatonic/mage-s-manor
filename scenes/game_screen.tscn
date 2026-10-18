@@ -301,5 +301,6 @@ home_pos = Vector2(160, 64)
 
 [connection signal="create_building" from="." to="." method="_on_create_building"]
 [connection signal="get_building_upgrade" from="." to="." method="_on_get_building_upgrade"]
+[connection signal="remove_building" from="." to="." method="_on_remove_building"]
 
 [editable path="Buildings/Manor"]

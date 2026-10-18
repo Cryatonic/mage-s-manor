@@ -78,7 +78,7 @@ func slot() -> void:
 		if not each.valid_hover_tile_slot:
 			print("Can't Go There")
 			global_position = home_pos
-			owner.built = false
+			owner.toggle_built(false)
 			return
 	
 	var total_glob_pos : Vector2 = Vector2.ZERO
@@ -105,7 +105,9 @@ func slot() -> void:
 	total_pos /= hitbox_children.size()
 	
 	global_position = total_glob_pos - total_pos
-	owner.built = true
+	#owner.emit_signal("build_building")
+	owner.toggle_built(true)
+	#owner.built = true
 
 func toggle_active(toggle : bool) -> void:
 	for hb in hitbox_tiles.get_children():

@@ -14,3 +14,6 @@ func set_resource_and_shape() -> void:
 		[1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1]
 	]
+
+func remove_building() -> void:
+	pass

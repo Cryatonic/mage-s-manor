@@ -22,5 +22,5 @@ position = Vector2(256, 176)
 script = ExtResource("2_rxrhn")
 action_name = "Buy Farm"
 action_desc = "Farm: Generates Food and Plant Products."
-cost_res = Array[String](["Gold"])
-cost_amt = Array[int]([25])
+cost_res = Array[String](["Gold", "Plant Products"])
+cost_amt = Array[int]([25, 5])

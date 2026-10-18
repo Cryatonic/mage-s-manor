@@ -2,12 +2,13 @@ extends Node2D
 class_name GameScreen
 
 @warning_ignore("unused_signal")
-signal create_building(type : String)
+signal create_building(type : String, c_res : Array[String], c_amt : Array[int])
 @warning_ignore("unused_signal")
 signal get_building_upgrade(upgrade : BaseUpgradeStrategy)
 
 @onready var hitbox_layer: TileMapLayer = $Tilemaps/HitboxLayer
 @onready var buildings: Node2D = $Buildings
+var unbuilt_buildings : Array[BaseBuilding] = []
 
 var active : bool = true
 
@@ -22,6 +23,9 @@ var playable_area : Vector2 = Vector2(10,10)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame
+	
+	for e in buildings.get_children():
+		unbuilt_buildings.append(e)
 	
 	for hb : TestTilesetScene in hitbox_layer.get_children():
 		if hb.position.x < origin_tile_pos.x - (playable_area[0] * 8): 
@@ -56,6 +60,9 @@ func _input(event: InputEvent) -> void:
 				break
 			if obj is BuildPieceTest:
 				owner.clicked_obj = obj
+				obj.owner.toggle_built(false)
+				#if obj.owner.built:
+					#unbuilt_buildings.append(obj.owner)
 				break
 	if event.is_action_released("select") and owner.clicked_obj != null:
 		if owner.clicked_obj is BuildPieceTest: owner.clicked_obj.slot()
@@ -104,8 +111,11 @@ func toggle_build_mode(toggle: bool):
 	build_mode = toggle
 	print("Build Mode: " + str(build_mode))
 	
-	for building in buildings.get_children():
-		if building.built: building.toggle_generator(!build_mode)
+	if not build_mode:
+		for b : BaseBuilding in unbuilt_buildings:
+			b.remove_building()
+	for building : BaseBuilding in buildings.get_children():
+		building.toggle_active(true, build_mode)
 
 func toggle_active(toggle : bool) -> void:
 	active = toggle
@@ -115,7 +125,7 @@ func toggle_active(toggle : bool) -> void:
 	for hb in hitbox_layer.get_children():
 		hb.get_node("Area2D/CollisionShape2D").disabled = !active
 	for build : BaseBuilding in get_node("Buildings").get_children():
-			build.toggle_active(active)
+		build.toggle_active(active, build_mode)
 
 
 func _on_get_building_upgrade(upgrade: BaseUpgradeStrategy) -> void:
@@ -132,7 +142,7 @@ func _on_get_building_upgrade(upgrade: BaseUpgradeStrategy) -> void:
 			upgrade.add_upgrade(each)
 
 
-func _on_create_building(type: String) -> void:
+func _on_create_building(type: String, c_res : Array[String], c_amt : Array[int]) -> void:
 	var b : PackedScene
 	if type == "Mine":
 		b = load("uid://t7vblyjuljk")
@@ -143,3 +153,8 @@ func _on_create_building(type: String) -> void:
 		
 	var build : BaseBuilding = b.instantiate()
 	buildings.add_child(build)
+	unbuilt_buildings.append(build)
+	
+	build.active = false
+	build.build_cost_res = c_res
+	build.build_cost_amt = c_amt
