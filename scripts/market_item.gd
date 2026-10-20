@@ -20,10 +20,7 @@ var curr_amt : int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	action_button.text = action_name
-	action_button.tooltip_text = action_desc
-	action_button.tooltip_text += "\n\nCost"
-	for c in range(0, cost_res.size()):
-		action_button.tooltip_text += "\n" + cost_res[c] + ": " + str(cost_amt[c])
+	update_desc()
 	
 	if not multi_buy:
 		inc_button.visible = false
@@ -48,6 +45,14 @@ func deduct_costs() -> void:
 	for c in range(0, cost_res.size()):
 		ResourcesHolder.resources_held[cost_res[c]] -= cost_amt[c] * curr_amt
 
+func res_text() -> String:
+	return action_desc
+
+func update_desc() -> void:
+	action_button.tooltip_text = res_text()
+	action_button.tooltip_text += "\n\nCost"
+	for c in range(0, cost_res.size()):
+		action_button.tooltip_text += "\n" + cost_res[c] + ": " + str(cost_amt[c] * curr_amt)
 
 func _on_action_button_pressed() -> void:
 	for c in range(0, cost_res.size()):
@@ -63,6 +68,7 @@ func _on_inc_button_pressed() -> void:
 	
 	curr_amt *= 10
 	amt_label.text = str(curr_amt)
+	update_desc()
 
 
 func _on_dec_button_pressed() -> void:
@@ -70,3 +76,4 @@ func _on_dec_button_pressed() -> void:
 	
 	curr_amt /= 10
 	amt_label.text = str(curr_amt)
+	update_desc()

@@ -3,13 +3,15 @@
 [ext_resource type="Script" uid="uid://x5ou1fn4x830" path="res://scripts/market_screen.gd" id="1_pcpas"]
 [ext_resource type="PackedScene" uid="uid://ch4leexs7ljcq" path="res://scenes/market_item.tscn" id="1_q8jq6"]
 [ext_resource type="Script" uid="uid://cqtjvfrwvxko" path="res://scripts/sell_knowledge.gd" id="2_pcpas"]
-[ext_resource type="Script" uid="uid://cc4w3prdxr42s" path="res://scripts/buy_farm.gd" id="2_rxrhn"]
+[ext_resource type="Script" uid="uid://du1ldfdfs2081" path="res://scripts/buy_resource.gd" id="4_i5ato"]
+[ext_resource type="Script" uid="uid://cs2n6je3ggxw5" path="res://scripts/buy_building.gd" id="6_iy2cy"]
 
 [node name="MarketScreen" type="Node2D" unique_id=1552489997]
+position = Vector2(0, 96)
 script = ExtResource("1_pcpas")
 
 [node name="SellKnowledge" parent="." unique_id=1067912606 instance=ExtResource("1_q8jq6")]
-position = Vector2(256, 128)
+position = Vector2(8, 8)
 script = ExtResource("2_pcpas")
 action_name = "Sell Knowledge"
 action_desc = "Sell your magic services for Gold. 10 Knowledge for 2 Gold."
@@ -17,10 +19,73 @@ multi_buy = true
 cost_res = Array[String](["Knowledge"])
 cost_amt = Array[int]([1])
 
-[node name="BuyFarm" parent="." unique_id=360049705 instance=ExtResource("1_q8jq6")]
-position = Vector2(256, 176)
-script = ExtResource("2_rxrhn")
+[node name="BuyAnimalProducts" parent="." unique_id=526107627 instance=ExtResource("1_q8jq6")]
+position = Vector2(8, 40)
+script = ExtResource("4_i5ato")
+res_buy = "Animal Products"
+res_amt_per = 2
+action_name = "Buy Animal Products"
+action_desc = "Buy AMT Animal Products."
+multi_buy = true
+cost_res = Array[String](["Gold"])
+cost_amt = Array[int]([1])
+
+[node name="BuyPlantProducts" parent="." unique_id=1161986690 instance=ExtResource("1_q8jq6")]
+position = Vector2(8, 72)
+script = ExtResource("4_i5ato")
+res_buy = "Plant Products"
+res_amt_per = 2
+action_name = "Buy Plant Products"
+action_desc = "Buy AMT Plant Products."
+multi_buy = true
+cost_res = Array[String](["Gold"])
+cost_amt = Array[int]([1])
+
+[node name="BuyFood" parent="." unique_id=1417112815 instance=ExtResource("1_q8jq6")]
+position = Vector2(8, 104)
+script = ExtResource("4_i5ato")
+res_buy = "Food"
+res_amt_per = 5
+action_name = "Buy Food"
+action_desc = "Buy AMT Food."
+multi_buy = true
+cost_res = Array[String](["Gold"])
+cost_amt = Array[int]([1])
+
+[node name="BuyMinerals" parent="." unique_id=537886840 instance=ExtResource("1_q8jq6")]
+position = Vector2(8, 136)
+script = ExtResource("4_i5ato")
+res_buy = "Minerals"
+res_amt_per = 4
+action_name = "Buy Minerals"
+action_desc = "Buy AMT Minerals."
+multi_buy = true
+cost_res = Array[String](["Gold"])
+cost_amt = Array[int]([3])
+
+[node name="BuyFarm" parent="." unique_id=490085420 instance=ExtResource("1_q8jq6")]
+position = Vector2(336, 8)
+script = ExtResource("6_iy2cy")
+build_name = "Farm"
 action_name = "Buy Farm"
 action_desc = "Farm: Generates Food and Plant Products."
 cost_res = Array[String](["Gold", "Plant Products"])
-cost_amt = Array[int]([25, 5])
+cost_amt = Array[int]([50, 15])
+
+[node name="BuyPasture" parent="." unique_id=916539564 instance=ExtResource("1_q8jq6")]
+position = Vector2(336, 40)
+script = ExtResource("6_iy2cy")
+build_name = "Pasture"
+action_name = "Buy Pasture"
+action_desc = "Pasture: Generates Food and Animal Products."
+cost_res = Array[String](["Gold", "Plant Products", "Food"])
+cost_amt = Array[int]([50, 5, 15])
+
+[node name="BuyMine" parent="." unique_id=812007206 instance=ExtResource("1_q8jq6")]
+position = Vector2(336, 72)
+script = ExtResource("6_iy2cy")
+build_name = "Mine"
+action_name = "Buy Mine"
+action_desc = "Mine: Generates Minerals and Gold."
+cost_res = Array[String](["Gold", "Minerals", "Plant Products"])
+cost_amt = Array[int]([75, 15, 5])
