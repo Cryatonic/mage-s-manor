@@ -128,19 +128,22 @@ func toggle_active(toggle : bool) -> void:
 	for build : BaseBuilding in get_node("Buildings").get_children():
 		build.toggle_active(active, build_mode)
 
+func add_building_upgrade(upgrade : BaseUpgradeStrategy, building : BaseBuilding):
+	if upgrade.buildings == []: return
+		
+	if building is ManorBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Manor):
+		upgrade.add_upgrade(building)
+	if building is MineBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Mine):
+		upgrade.add_upgrade(building)
+	if building is FarmBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Farm):
+		upgrade.add_upgrade(building)
+	if building is PastureBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Pasture):
+		upgrade.add_upgrade(building)
+	
 
 func _on_get_building_upgrade(upgrade: BaseUpgradeStrategy) -> void:
 	for each in buildings.get_children():
-		if upgrade.buildings == []: return
-		
-		if each is ManorBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Manor):
-			upgrade.add_upgrade(each)
-		if each is MineBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Mine):
-			upgrade.add_upgrade(each)
-		if each is FarmBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Farm):
-			upgrade.add_upgrade(each)
-		if each is PastureBuilding and upgrade.buildings.has(upgrade.ValidBuildings.Pasture):
-			upgrade.add_upgrade(each)
+		add_building_upgrade(upgrade, each)
 
 
 func _on_create_building(type: String, c_res : Array[String], c_amt : Array[int]) -> void:
@@ -159,6 +162,8 @@ func _on_create_building(type: String, c_res : Array[String], c_amt : Array[int]
 	build.active = false
 	build.build_cost_res = c_res
 	build.build_cost_amt = c_amt
+	for u : BaseUpgradeStrategy in ResourcesHolder.building_upgrades:
+		add_building_upgrade(u, build)
 	
 	var spacing : float = 128.0
 	@warning_ignore("integer_division")
