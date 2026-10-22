@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://jnodm4k3f7mc"]
 
 [ext_resource type="Script" uid="uid://b1n1mekb7d0tr" path="res://scripts/test_game.gd" id="1_1tawp"]
+[ext_resource type="Script" uid="uid://cl1xj7c3nr5u" path="res://scripts/game_cam.gd" id="2_eekg0"]
 [ext_resource type="PackedScene" uid="uid://i4515j0ssywr" path="res://scenes/hud.tscn" id="2_gp5yl"]
 [ext_resource type="FontFile" uid="uid://bc1p5k44lkuvf" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_nsx7x"]
 [ext_resource type="PackedScene" uid="uid://bntrvariu3era" path="res://scenes/upgrades_screen.tscn" id="4_ydt7i"]
@@ -13,21 +14,17 @@ script = ExtResource("1_1tawp")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1727842876]
 anchor_mode = 0
 zoom = Vector2(2, 2)
+position_smoothing_speed = 100.0
+script = ExtResource("2_eekg0")
 
-[node name="HUD" parent="." unique_id=995680338 instance=ExtResource("2_gp5yl")]
+[node name="HUD" parent="Camera2D" unique_id=995680338 instance=ExtResource("2_gp5yl")]
 z_index = 2
 offset_top = 8.0
 offset_bottom = 8.0
 
-[node name="GameScreen" parent="." unique_id=888900221 instance=ExtResource("9_afj2h")]
+[node name="ScreenButtons" type="Node2D" parent="Camera2D" unique_id=527038023]
 
-[node name="UpgradesScreen" parent="." unique_id=243193083 instance=ExtResource("4_ydt7i")]
-
-[node name="MarketScreen" parent="." unique_id=1552489997 instance=ExtResource("5_nybpm")]
-
-[node name="ScreenButtons" type="Node2D" parent="." unique_id=527038023]
-
-[node name="UpgradesScreen" type="Button" parent="ScreenButtons" unique_id=1387239105]
+[node name="UpgradesScreen" type="Button" parent="Camera2D/ScreenButtons" unique_id=1387239105]
 custom_minimum_size = Vector2(200, 32)
 custom_maximum_size = Vector2(200, 32)
 offset_left = 600.0
@@ -38,7 +35,7 @@ theme_override_fonts/font = ExtResource("4_nsx7x")
 theme_override_font_sizes/font_size = 24
 text = "Upgrades"
 
-[node name="GameScreen" type="Button" parent="ScreenButtons" unique_id=90391240]
+[node name="GameScreen" type="Button" parent="Camera2D/ScreenButtons" unique_id=90391240]
 custom_minimum_size = Vector2(146, 32)
 custom_maximum_size = Vector2(146, 32)
 anchors_preset = 1
@@ -52,7 +49,7 @@ theme_override_fonts/font = ExtResource("4_nsx7x")
 theme_override_font_sizes/font_size = 24
 text = "Estate"
 
-[node name="MarketScreen" type="Button" parent="ScreenButtons" unique_id=1995964644]
+[node name="MarketScreen" type="Button" parent="Camera2D/ScreenButtons" unique_id=1995964644]
 custom_minimum_size = Vector2(152, 32)
 custom_maximum_size = Vector2(152, 32)
 anchors_preset = 1
@@ -67,6 +64,12 @@ theme_override_fonts/font = ExtResource("4_nsx7x")
 theme_override_font_sizes/font_size = 24
 text = "Market"
 
-[connection signal="pressed" from="ScreenButtons/UpgradesScreen" to="." method="_on_upgrades_screen_pressed"]
-[connection signal="pressed" from="ScreenButtons/GameScreen" to="." method="_on_game_screen_pressed"]
-[connection signal="pressed" from="ScreenButtons/MarketScreen" to="." method="_on_market_screen_pressed"]
+[node name="GameScreen" parent="." unique_id=888900221 instance=ExtResource("9_afj2h")]
+
+[node name="UpgradesScreen" parent="." unique_id=243193083 instance=ExtResource("4_ydt7i")]
+
+[node name="MarketScreen" parent="." unique_id=1552489997 instance=ExtResource("5_nybpm")]
+
+[connection signal="pressed" from="Camera2D/ScreenButtons/UpgradesScreen" to="." method="_on_upgrades_screen_pressed"]
+[connection signal="pressed" from="Camera2D/ScreenButtons/GameScreen" to="." method="_on_game_screen_pressed"]
+[connection signal="pressed" from="Camera2D/ScreenButtons/MarketScreen" to="." method="_on_market_screen_pressed"]

@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var camera_2d: Camera2D = $Camera2D
-@onready var hud: HUD = $HUD
+@onready var camera_2d: GameCam = $Camera2D
+@onready var hud: HUD = $Camera2d/HUD
 @onready var game_screen: GameScreen = $GameScreen
 @onready var upgrade_screen: UpgradesScreen = $UpgradesScreen
 @onready var market_screen: Node2D = $MarketScreen
@@ -45,6 +45,7 @@ func _on_upgrades_screen_pressed() -> void:
 	game_screen.toggle_active(false)
 	upgrade_screen.toggle_active(true)
 	market_screen.toggle_active(false)
+	camera_2d.toggle_draggable(true)
 
 
 func _on_game_screen_pressed() -> void:
@@ -52,6 +53,7 @@ func _on_game_screen_pressed() -> void:
 	game_screen.toggle_active(true)
 	upgrade_screen.toggle_active(false)
 	market_screen.toggle_active(false)
+	camera_2d.toggle_draggable(false)
 
 
 func _on_market_screen_pressed() -> void:
@@ -59,3 +61,4 @@ func _on_market_screen_pressed() -> void:
 	game_screen.toggle_active(false)
 	upgrade_screen.toggle_active(false)
 	market_screen.toggle_active(true)
+	camera_2d.toggle_draggable(true)
